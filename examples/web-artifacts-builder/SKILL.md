@@ -7,9 +7,9 @@ license: Complete terms in LICENSE.txt
 # Web Artifacts Builder
 
 To build powerful frontend claude.ai artifacts, follow these steps:
-1. Initialize the frontend repo using `scripts/init-artifact.sh`
+1. Initialize the frontend repo using `scripts/init-artifact.cmd` (Windows) or `node scripts/init-artifact.cjs` (macOS/Linux)
 2. Develop your artifact by editing the generated code
-3. Bundle all code into a single HTML file using `scripts/bundle-artifact.sh`
+3. Bundle all code into a single HTML file using `scripts/bundle-artifact.cmd` (Windows) or run the same `pnpm` / `parcel` / `html-inline` steps from a Unix shell (see script)
 4. Display artifact to user
 5. (Optional) Test the artifact
 
@@ -23,9 +23,14 @@ VERY IMPORTANT: To avoid what is often referred to as "AI slop", avoid using exc
 
 ### Step 1: Initialize Project
 
-Run the initialization script to create a new React project:
+Run the initialization script from the skill folder (where `scripts/` lives). **Windows (cmd):**
+```bat
+scripts\init-artifact.cmd <project-name>
+cd <project-name>
+```
+**macOS / Linux:**
 ```bash
-bash scripts/init-artifact.sh <project-name>
+node scripts/init-artifact.cjs <project-name>
 cd <project-name>
 ```
 
@@ -44,9 +49,16 @@ To build the artifact, edit the generated files. See **Common Development Tasks*
 
 ### Step 3: Bundle to Single HTML File
 
-To bundle the React app into a single HTML artifact:
+To bundle the React app into a single HTML artifact, from the **project root** (where `package.json` is):
+
+**Windows (cmd):**
+```bat
+path\to\web-artifacts-builder\scripts\bundle-artifact.cmd
+```
+
+**macOS / Linux:**
 ```bash
-bash scripts/bundle-artifact.sh
+node path/to/web-artifacts-builder/scripts/bundle-artifact.cjs
 ```
 
 This creates `bundle.html` - a self-contained artifact with all JavaScript, CSS, and dependencies inlined. This file can be directly shared in Claude conversations as an artifact.
